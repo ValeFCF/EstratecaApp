@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">WingApp</string>
+
+    <string name="title_section1">Ordena y Paga en Línea</string>
+    <string name="title_section2">Estado de cuenta</string>
+    <string name="title_section3">Promociones</string>
+    <string name="title_section4">Acerca de nosotros</string>
+    <string name="title_section5">Contctanos</string>
+    <string name="title_section6">Mi Perfil</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">btnAction</string>
+
+    <string name="action_settings">Settings</string>
+</resources>
