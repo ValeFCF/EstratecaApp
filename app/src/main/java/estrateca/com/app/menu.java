@@ -9,10 +9,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
-import estrateca.com.app.fragments.AcercaDe;
 import estrateca.com.app.fragments.MiPerfil;
-
 
 public class menu extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -32,7 +34,26 @@ public class menu extends ActionBarActivity
     private static final int NAVIGATION_ACERCA_DE = 3;
     private static final int NAVIGATION_CONTACTANOS = 4;
     private static final int NAVIGATION_MI_PERFIL = 5;
+    
+    ListViewAdapter adapter;
 
+    String[] titulo = new String[]{
+            "cupon 1",
+            "cupon 2",
+            "cupon 3",
+            "cupon 4",
+            "cupon 5",
+    };
+
+    int[] imagenes = {
+            R.drawable.cupon1,
+            R.drawable.cupon2,
+            R.drawable.cupon3,
+            R.drawable.cupon4,
+            R.drawable.cupon5
+    };
+
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +67,27 @@ public class menu extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        
+        
+        final ListView lista = (ListView) findViewById(R.id.listView1);
+        adapter = new ListViewAdapter(this, titulo, imagenes);
+        lista.setAdapter(adapter);
+
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(), "presiono " + i, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(), "presiono LARGO " + i, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+    
     }
 
     @Override
@@ -70,7 +112,7 @@ public class menu extends ActionBarActivity
 
                 break;
             case NAVIGATION_ACERCA_DE:
-                fragment = new AcercaDe();
+                //fragment = new AcercaDe();
 
                 break;
             case NAVIGATION_CONTACTANOS:
