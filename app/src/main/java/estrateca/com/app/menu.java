@@ -1,20 +1,19 @@
 package estrateca.com.app;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
 
+import estrateca.com.app.fragments.AcercaDe;
 import estrateca.com.app.fragments.MiPerfil;
+import estrateca.com.app.fragments.Promociones;
 
 public class menu extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -34,127 +33,80 @@ public class menu extends ActionBarActivity
     private static final int NAVIGATION_ACERCA_DE = 3;
     private static final int NAVIGATION_CONTACTANOS = 4;
     private static final int NAVIGATION_MI_PERFIL = 5;
-    
-    ListViewAdapter adapter;
 
-    String[] titulo = new String[]{
-            "cupon 1",
-            "cupon 2",
-            "cupon 3",
-            "cupon 4",
-            "cupon 5",
-    };
 
-    int[] imagenes = {
-            R.drawable.cupon1,
-            R.drawable.cupon2,
-            R.drawable.cupon3,
-            R.drawable.cupon4,
-            R.drawable.cupon5
-    };
-
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+                getFragmentManager().findFragmentById(R.id.navigation_drawer);
+        onSectionAttached(5); // se coloca en MiPerfil
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-        
-        
-        final ListView lista = (ListView) findViewById(R.id.listView1);
-        adapter = new ListViewAdapter(this, titulo, imagenes);
-        lista.setAdapter(adapter);
 
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(), "presiono " + i, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(), "presiono LARGO " + i, Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
-    
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
 
-        //Fragment fragment = null;
-        FragmentManager fragmentManager =  getSupportFragmentManager();
+        onSectionAttached(position);
+
+        Log.i("position =",""+position);
+
+    }
+
+    public void onSectionAttached(int position) {
+
+        FragmentManager fragmentManager =  getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         Fragment fragment = new Fragment();
 
         switch (position) {
             case NAVIGATION_ORDENAR:
-                fragment = new MiPerfil();
+                mTitle = getString(R.string.title_section1);
+
 
                 break;
             case NAVIGATION_ESTADO_CUENTA:
-                //fragment = FragmentSetPlate.newInstance(true);
+                mTitle = getString(R.string.title_section2);
+
+
                 break;
             case NAVIGATION_PROMOCIONES:
+                mTitle = getString(R.string.title_section3);
+                fragment = new Promociones();
 
                 break;
             case NAVIGATION_ACERCA_DE:
-                //fragment = new AcercaDe();
+                mTitle = getString(R.string.title_section4);
+                fragment = new AcercaDe();
 
                 break;
             case NAVIGATION_CONTACTANOS:
+                mTitle = getString(R.string.title_section5);
+
 
                 break;
             case NAVIGATION_MI_PERFIL:
+                mTitle = getString(R.string.title_section6);
+                fragment = new MiPerfil();
 
                 break;
-            default:
-                fragment = new MiPerfil();
-                break;
+
         }
 
-        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.replace(R.id.vale_holder_container, fragment);
         fragmentTransaction.commit();
 
-        onSectionAttached(position + 1);
+        restoreActionBar();
 
-
-    }
-
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                mTitle = getString(R.string.title_section1);
-                break;
-            case 2:
-                mTitle = getString(R.string.title_section2);
-                break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
-            case 4:
-                mTitle = getString(R.string.title_section4);
-                break;
-            case 5:
-                mTitle = getString(R.string.title_section5);
-                break;
-            case 6:
-                mTitle = getString(R.string.title_section6);
-                break;
-        }
     }
 
     public void restoreActionBar() {
@@ -172,7 +124,7 @@ public class menu extends ActionBarActivity
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.menu, menu);
-            restoreActionBar();
+            //restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);

@@ -17,7 +17,9 @@ public class AcercaDe extends Fragment {
         return fragment;
     }
 
+    public AcercaDe() {
 
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
