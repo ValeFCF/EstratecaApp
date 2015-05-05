@@ -1,17 +1,17 @@
 package estrateca.com.app;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+
+import estrateca.com.app.fragments.AcercaDe;
+import estrateca.com.app.fragments.MiPerfil;
 
 
 public class menu extends ActionBarActivity
@@ -26,6 +26,12 @@ public class menu extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private static final int NAVIGATION_ORDENAR = 0;
+    private static final int NAVIGATION_ESTADO_CUENTA = 1;
+    private static final int NAVIGATION_PROMOCIONES = 2;
+    private static final int NAVIGATION_ACERCA_DE = 3;
+    private static final int NAVIGATION_CONTACTANOS = 4;
+    private static final int NAVIGATION_MI_PERFIL = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +51,45 @@ public class menu extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+
+        //Fragment fragment = null;
+        FragmentManager fragmentManager =  getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        Fragment fragment = new Fragment();
+
+        switch (position) {
+            case NAVIGATION_ORDENAR:
+                fragment = new MiPerfil();
+
+                break;
+            case NAVIGATION_ESTADO_CUENTA:
+                //fragment = FragmentSetPlate.newInstance(true);
+                break;
+            case NAVIGATION_PROMOCIONES:
+
+                break;
+            case NAVIGATION_ACERCA_DE:
+                fragment = new AcercaDe();
+
+                break;
+            case NAVIGATION_CONTACTANOS:
+
+                break;
+            case NAVIGATION_MI_PERFIL:
+
+                break;
+            default:
+                fragment = new MiPerfil();
+                break;
+        }
+
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.commit();
+
+        onSectionAttached(position + 1);
+
+
     }
 
     public void onSectionAttached(int number) {
@@ -108,46 +149,6 @@ public class menu extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((menu) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
     }
 
 }
