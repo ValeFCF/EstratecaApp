@@ -12,9 +12,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class menu extends ActionBarActivity
+
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -26,6 +35,23 @@ public class menu extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    ListViewAdapter adapter;
+
+    String[] titulo = new String[]{
+            "cupon 1",
+            "cupon 2",
+            "cupon 3",
+            "cupon 4",
+            "cupon 5",
+    };
+
+    int[] imagenes = {
+            R.drawable.cupon1,
+            R.drawable.cupon2,
+            R.drawable.cupon3,
+            R.drawable.cupon4,
+            R.drawable.cupon5
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +66,24 @@ public class menu extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        final ListView lista = (ListView) findViewById(R.id.listView1);
+        adapter = new ListViewAdapter(this, titulo, imagenes);
+        lista.setAdapter(adapter);
+
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(), "presiono " + i, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(), "presiono LARGO " + i, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
     }
 
     @Override
