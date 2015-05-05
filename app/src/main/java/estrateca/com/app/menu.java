@@ -8,11 +8,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import estrateca.com.app.fragments.AcercaDe;
+import estrateca.com.app.fragments.Contactar;
+import estrateca.com.app.fragments.Cuenta;
 import estrateca.com.app.fragments.MiPerfil;
+import estrateca.com.app.fragments.Ordenar;
 import estrateca.com.app.fragments.Promociones;
 
 public class menu extends ActionBarActivity
@@ -71,12 +73,12 @@ public class menu extends ActionBarActivity
         switch (position) {
             case NAVIGATION_ORDENAR:
                 mTitle = getString(R.string.title_section1);
-
+                fragment = new Ordenar();
 
                 break;
             case NAVIGATION_ESTADO_CUENTA:
                 mTitle = getString(R.string.title_section2);
-
+                fragment = new Cuenta();
 
                 break;
             case NAVIGATION_PROMOCIONES:
@@ -91,7 +93,7 @@ public class menu extends ActionBarActivity
                 break;
             case NAVIGATION_CONTACTANOS:
                 mTitle = getString(R.string.title_section5);
-
+                fragment = new Contactar();
 
                 break;
             case NAVIGATION_MI_PERFIL:
@@ -118,7 +120,7 @@ public class menu extends ActionBarActivity
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
