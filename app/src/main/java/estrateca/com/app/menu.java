@@ -16,6 +16,7 @@ import estrateca.com.app.fragments.Cuenta;
 import estrateca.com.app.fragments.MiPerfil;
 import estrateca.com.app.fragments.Ordenar;
 import estrateca.com.app.fragments.Promociones;
+import estrateca.com.app.fragments.Ubicacion;
 
 public class menu extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -30,11 +31,12 @@ public class menu extends ActionBarActivity
      */
     private CharSequence mTitle;
     private static final int NAVIGATION_ORDENAR = 0;
-    private static final int NAVIGATION_ESTADO_CUENTA = 1;
-    private static final int NAVIGATION_PROMOCIONES = 2;
-    private static final int NAVIGATION_ACERCA_DE = 3;
-    private static final int NAVIGATION_CONTACTANOS = 4;
-    private static final int NAVIGATION_MI_PERFIL = 5;
+    private static final int NAVIGATION_UBICACIONES = 1;
+    private static final int NAVIGATION_ESTADO_CUENTA = 2;
+    private static final int NAVIGATION_PROMOCIONES = 3;
+    private static final int NAVIGATION_ACERCA_DE = 4;
+    private static final int NAVIGATION_CONTACTANOS = 5;
+    private static final int NAVIGATION_MI_PERFIL = 6;
 
 
     @Override
@@ -44,7 +46,7 @@ public class menu extends ActionBarActivity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
-        onSectionAttached(5); // se coloca en MiPerfil
+        onSectionAttached(6); // se coloca en MiPerfil
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -72,8 +74,13 @@ public class menu extends ActionBarActivity
 
         switch (position) {
             case NAVIGATION_ORDENAR:
-                mTitle = getString(R.string.title_section1);
+                mTitle = getString(R.string.title_section0);
                 fragment = new Ordenar();
+
+                break;
+            case NAVIGATION_UBICACIONES:
+                mTitle = getString(R.string.title_section1);
+                fragment = new Ubicacion();
 
                 break;
             case NAVIGATION_ESTADO_CUENTA:

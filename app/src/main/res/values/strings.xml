@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Estrateca</string>
 
-    <string name="title_section1">Ordena y Paga en Línea</string>
+    <string name="title_section0">Ordena y Paga en Línea</string>
+    <string name="title_section1">Nuestras ubicaciones</string>
     <string name="title_section2">Estado de cuenta</string>
     <string name="title_section3">Promociones</string>
     <string name="title_section4">Acerca de nosotros</string>
