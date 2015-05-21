@@ -57,7 +57,7 @@ public class Promociones extends Fragment {
         View v = inflater.inflate(R.layout.fragment_promociones, container, false);
 
         final ListView lista = (ListView) v.findViewById(R.id.listView1);
-        adapter = new ListViewAdapter(getActivity(), titulo, imagenes);
+        adapter = new ListViewAdapter(getActivity(), titulo, imagenes,1);
         lista.setAdapter(adapter);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {

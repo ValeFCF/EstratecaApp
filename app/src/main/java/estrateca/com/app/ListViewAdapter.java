@@ -13,12 +13,14 @@ public class ListViewAdapter extends BaseAdapter {
     Context context;
     String[] titulos;
     int[] imagenes;
+    int tipo;
     LayoutInflater inflater;
 
-    public ListViewAdapter(Context context, String[] titulos, int[] imagenes) {
+    public ListViewAdapter(Context context, String[] titulos, int[] imagenes,int tipo) {
         this.context = context;
         this.titulos = titulos;
         this.imagenes = imagenes;
+        this.tipo=tipo;
     }
 
     @Override
@@ -44,17 +46,32 @@ public class ListViewAdapter extends BaseAdapter {
 
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        if( tipo ==1) {
+            View itemView = inflater.inflate(R.layout.list_row, parent, false);
 
-        View itemView = inflater.inflate(R.layout.list_row, parent, false);
+            // Locate the TextViews in listview_item.xml
+            txtTitle = (TextView) itemView.findViewById(R.id.list_row_title);
+            imgImg = (ImageView) itemView.findViewById(R.id.list_row_image);
 
-        // Locate the TextViews in listview_item.xml
-        txtTitle = (TextView) itemView.findViewById(R.id.list_row_title);
-        imgImg = (ImageView) itemView.findViewById(R.id.list_row_image);
+            // Capture position and set to the TextViews
+            txtTitle.setText(titulos[position]);
+            imgImg.setImageResource(imagenes[position]);
+            return itemView;
+        }
+        else{
 
-        // Capture position and set to the TextViews
-        txtTitle.setText(titulos[position]);
-        imgImg.setImageResource(imagenes[position]);
+            View itemView = inflater.inflate(R.layout.list_row2, parent, false);
 
-        return itemView;
+            // Locate the TextViews in listview_item.xml
+
+            imgImg = (ImageView) itemView.findViewById(R.id.list_row_image);
+
+            // Capture position and set to the TextViews
+
+            imgImg.setImageResource(imagenes[position]);
+            return itemView;
+        }
+
+
     }
 }

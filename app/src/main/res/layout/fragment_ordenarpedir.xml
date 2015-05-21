@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imagen"
+        android:src="@drawable/platillo1" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Alitas con salsa extra picantes para amantes de las salsas picantes contiene 10 alitas y salsa"
+            android:id="@+id/textoplatillo"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="152dp" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/menos"
+            android:text="-"
+            android:layout_above="@+id/editText2"
+            android:layout_alignRight="@+id/cancelar"
+            android:layout_alignEnd="@+id/cancelar"
+            android:layout_marginBottom="39dp" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:id="@+id/mas"
+            android:layout_alignTop="@+id/menos"
+            android:layout_alignLeft="@+id/Agregar"
+            android:layout_alignStart="@+id/Agregar" />
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/numero"
+            android:background="@color/ripple_material_light"
+            android:textSize="30dp"
+            android:text="0"
+            android:textAlignment="center"
+            android:layout_alignBottom="@+id/mas"
+            android:layout_centerHorizontal="true" />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:id="@+id/editText2"
+            android:hint="          INSTRUCCIONES PARTICULARES"
+            android:layout_gravity="center"
+            android:theme="@style/Base.Animation.AppCompat.Dialog"
+            android:background="@color/button_material_light"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="54dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar orden"
+            android:id="@+id/cancelar"
+            android:layout_gravity="left|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agregar Orden"
+            android:id="@+id/Agregar"
+            android:layout_gravity="right|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+</FrameLayout>
