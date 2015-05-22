@@ -3,6 +3,7 @@ package estrateca.com.app;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -61,7 +62,7 @@ public class menu extends ActionBarActivity
 
         onSectionAttached(position);
 
-        Log.i("position =",""+position);
+        Log.i("position =", "" + position);
 
     }
 
@@ -152,6 +153,12 @@ public class menu extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
 }
