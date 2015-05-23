@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.facebook.CallbackManager;
+
 import estrateca.com.app.fragments.AcercaDe;
 import estrateca.com.app.fragments.Contactar;
 import estrateca.com.app.fragments.Cuenta;
@@ -38,12 +40,15 @@ public class menu extends ActionBarActivity
     private static final int NAVIGATION_ACERCA_DE = 4;
     private static final int NAVIGATION_CONTACTANOS = 5;
     private static final int NAVIGATION_MI_PERFIL = 6;
+    public CallbackManager callbackManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        callbackManager = CallbackManager.Factory.create();
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -158,7 +163,12 @@ public class menu extends ActionBarActivity
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //callbackManager.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        Log.i("callbackManager", "onActivityResult");
+        Log.i("callbackManager", ""+requestCode);
+        Log.i("callbackManager",""+resultCode);
+        Log.i("callbackManager",data.toString());
+
     }
 
 }
